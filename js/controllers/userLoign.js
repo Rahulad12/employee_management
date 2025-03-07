@@ -2,9 +2,10 @@ import { loginUser } from "../apiService/userApi.js";
 import { createForm } from "../component/Form.js";
 
 export const userLogin = () => {
-  const { loginForm, emailInput, passwordInput } = createForm();
+  const { userAuthForm, emailInput, passwordInput, submitButton } =
+    createForm();
 
-  loginForm.addEventListener("submit", async (event) => {
+  userAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const email = emailInput.value.trim();
@@ -15,6 +16,8 @@ export const userLogin = () => {
       return;
     }
 
+    submitButton.disabled = true;
+    submitButton.innerText = "Login...";
     try {
       const response = await loginUser(email, password);
       console.log(response);
@@ -28,6 +31,9 @@ export const userLogin = () => {
     } catch (error) {
       console.error("Error loggin in:", error);
       alert("Login Failed. Please try again");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerText = "Login";
     }
   });
 };

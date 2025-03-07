@@ -1,28 +1,26 @@
-const userLoginPage = document.getElementById("auth-container");
-
+const userAuthForm = document.getElementById("form");
+const isRegister = window.location.href.includes("userRegister");
 export const createForm = () => {
-  const loginForm = document.createElement("form");
-
   //create input element in form
   const emailInput = document.createElement("input");
-  emailInput.setAttribute("type", "text");
+  emailInput.setAttribute("type", "email");
   emailInput.setAttribute("name", "email");
+  emailInput.setAttribute("required", "true");
   emailInput.setAttribute("placeholder", "Enter your Email");
 
   const passwordInput = document.createElement("input");
   passwordInput.setAttribute("type", "password");
   passwordInput.setAttribute("name", "password");
+  emailInput.setAttribute("required", "true");
   passwordInput.setAttribute("placeholder", "Enter your password");
 
   const submitButton = document.createElement("button");
   submitButton.setAttribute("type", "submit");
-  submitButton.textContent = "Login";
+  submitButton.textContent = `${isRegister ? "Register" : "Login"}`;
 
-  loginForm.appendChild(emailInput);
-  loginForm.appendChild(passwordInput);
-  loginForm.appendChild(submitButton);
+  userAuthForm.appendChild(emailInput);
+  userAuthForm.appendChild(passwordInput);
+  userAuthForm.appendChild(submitButton);
 
-  userLoginPage.appendChild(loginForm);
-
-  return { loginForm, emailInput, passwordInput };
+  return { userAuthForm, emailInput, passwordInput, submitButton };
 };

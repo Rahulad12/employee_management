@@ -2,9 +2,9 @@ import { registerUser } from "../apiService/userApi.js";
 import { createForm } from "../component/Form.js";
 
 const userRegister = () => {
-  const { loginForm, emailInput, passwordInput } = createForm();
+  const { userAuthForm, emailInput, passwordInput,submitButton } = createForm();
 
-  loginForm.addEventListener("submit", async (event) => {
+  userAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -13,6 +13,9 @@ const userRegister = () => {
       alert("Please enter both email and password");
       return;
     }
+
+submitButton.disabled = true;
+submitButton.innerText = "Registering...";
 
     try {
       const response = await registerUser(email, password);
@@ -25,6 +28,10 @@ const userRegister = () => {
     } catch (error) {
       console.error("Error login in", error);
       alert("Register Failed. please try again");
+    }
+    finally{
+      submitButton.disabled = false;
+      submitButton.innerText = "Register";
     }
   });
 };
