@@ -1,9 +1,8 @@
 import { loginUser } from "../apiService/userApi.js";
-import { createForm } from "../component/Form.js";
-
+import { authForm } from "../utils/helper.js";
 export const userLogin = () => {
-  const { userAuthForm, emailInput, passwordInput, submitButton } =
-    createForm();
+  const { userAuthForm, emailInput, passwordInput, submitButton } = authForm();
+  console.log(userAuthForm);
 
   userAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -21,7 +20,7 @@ export const userLogin = () => {
     try {
       const response = await loginUser(email, password);
       console.log(response);
-      localStorage.setItem("token", response?.user.token);
+      localStorage.setItem("token", response?.user?.token);
 
       if (response.success) {
         alert(`${response?.message}` || "Login Successfull");
@@ -30,13 +29,10 @@ export const userLogin = () => {
       }
     } catch (error) {
       console.error("Error loggin in:", error);
-      alert("Login Failed. Please try again");
     } finally {
       submitButton.disabled = false;
       submitButton.innerText = "Login";
     }
   });
 };
-document.addEventListener("DOMContentLoaded", () => {
-  userLogin();
-});
+userLogin();

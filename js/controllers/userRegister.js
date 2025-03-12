@@ -1,21 +1,25 @@
 import { registerUser } from "../apiService/userApi.js";
-import { createForm } from "../component/Form.js";
+import { authForm } from "../utils/helper.js";
+import checkEmailPassword from "../utils/validator.js";
 
-const userRegister = () => {
-  const { userAuthForm, emailInput, passwordInput,submitButton } = createForm();
+export const userRegister = () => {
+  const { userAuthForm, emailInput, passwordInput, submitButton } = authForm();
+  console.log(userAuthForm);
 
   userAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    if (!email || !password) {
-      alert("Please enter both email and password");
+    const errorMessage = checkEmailPassword(password, email);
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
-submitButton.disabled = true;
-submitButton.innerText = "Registering...";
+    submitButton.disabled = true;
+    submitButton.innerText = "Registering...";
 
     try {
       const response = await registerUser(email, password);
@@ -28,11 +32,11 @@ submitButton.innerText = "Registering...";
     } catch (error) {
       console.error("Error login in", error);
       alert("Register Failed. please try again");
-    }
-    finally{
+    } finally {
       submitButton.disabled = false;
       submitButton.innerText = "Register";
     }
   });
 };
+
 userRegister();

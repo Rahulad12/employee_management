@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/userLogin.css" />
-    <title>Employee Login</title>
+    <title>User Login</title>
   </head>
   <body>
     <div id="auth-container">
@@ -13,6 +13,30 @@
       </div>
       <div id="form-container">
         <form id="form">
+          <div class="email-container">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div class="password-container">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div class="button-container">
+            <button type="submit" id="submit-button" class="login-button btn">
+              Login
+            </button>
+          </div>
           <p class="form-text-end">
             Donot have account?
             <span>
