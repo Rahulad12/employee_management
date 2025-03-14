@@ -1,24 +1,45 @@
-const checkEmailPassword = (...data) => {
-  const [password, email] = data;
+import {
+  emailErrorMessage,
+  passwordErrorMessage,
+  errorMessage,
+} from "./helper.js";
+
+const checkEmailPassword = (password, email) => {
+  // Clearing previous error messages
+  emailErrorMessage("");
+  passwordErrorMessage("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
 
-  if (!email || !password) {
-    alert("Please enter both email and password");
-    return;
+  let hasError = false;
+
+  if (!email) {
+    emailErrorMessage("Email is required.");
+    hasError = true;
   }
 
-  const isValidEmail = emailRegex.test(email);
-  if (!isValidEmail) {
-    return "Please enter a valid email address.";
+  if (!password) {
+    passwordErrorMessage("Password is required.");
+    hasError = true;
   }
 
-  const isValidPassword = passwordRegex.test(password);
-  if (!isValidPassword) {
-    return "Password must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character.";
+  // Stop further checks if email or password is missing
+  if (hasError) return "Validation Error";
+
+  if (!emailRegex.test(email)) {
+    emailErrorMessage("Please enter a valid email address.");
+    hasError = true;
   }
-  return "";
+
+  if (!passwordRegex.test(password)) {
+    passwordErrorMessage(
+      "Password should be at least 8 characters long and contain at least one uppercase letter, one number, and one special character."
+    );
+    hasError = true;
+  }
+
+  return hasError ? "Validation Error" : null;
 };
 
 export default checkEmailPassword;

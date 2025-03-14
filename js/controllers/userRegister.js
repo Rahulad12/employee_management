@@ -1,10 +1,13 @@
 import { registerUser } from "../apiService/userApi.js";
-import { authForm } from "../utils/helper.js";
+import { authForm, errorMessage, isLoggedIn } from "../utils/helper.js";
 import checkEmailPassword from "../utils/validator.js";
+// Redirect if already logged in
+if (isLoggedIn()) {
+  window.location.href = "../screen/employeeDashboard.html";
+}
 
 export const userRegister = () => {
   const { userAuthForm, emailInput, passwordInput, submitButton } = authForm();
-  console.log(userAuthForm);
 
   userAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -12,9 +15,11 @@ export const userRegister = () => {
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    const errorMessage = checkEmailPassword(password, email);
-    if (errorMessage) {
-      alert(errorMessage);
+    // Clear previous general error message
+    errorMessage({ message: "", success: true });
+
+    const validationError = checkEmailPassword(password, email); // Check email and password and return the error message here
+    if (validationError) {
       return;
     }
 
@@ -23,15 +28,24 @@ export const userRegister = () => {
 
     try {
       const response = await registerUser(email, password);
-
       if (response.success) {
-        alert(`${response?.message}` || "Register successfull");
+        errorMessage({
+          success: true,
+          message: response.message || "Registration successful",
+        });
+        userAuthForm.reset(); // Reset form after successful registration
       } else {
-        alert(response);
+        errorMessage({
+          success: false,
+          message: response || "Registration failed",
+        });
       }
     } catch (error) {
-      console.error("Error login in", error);
-      alert("Register Failed. please try again");
+      console.error("Error registering:", error);
+      errorMessage({
+        success: false,
+        message: "An error occurred. Please try again later.",
+      });
     } finally {
       submitButton.disabled = false;
       submitButton.innerText = "Register";

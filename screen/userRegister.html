@@ -16,14 +16,13 @@
           <div class="email-container">
             <label for="email">Email</label>
             <input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="Enter your email"
-              required
             />
           </div>
-
+          <span id="email-error-message"></span>
           <div class="password-container">
             <label for="password">Password</label>
             <input
@@ -32,17 +31,18 @@
               id="password"
               placeholder="Enter your password"
             />
-            <small style="color: rgb(186, 169, 16); text-align: left"
-              >Password Should be at least 8 characters long and contain at
-              least one uppercase letter, one number, and one special
-              character.</small
-            >
           </div>
+          <span id="password-error-message"></span>
+          <small style="color: rgb(186, 169, 16); text-align: left"
+            >Password Should be at least 8 characters long and contain at least
+            one uppercase letter, one number, and one special character.</small
+          >
           <div class="button-container">
             <button type="submit" id="submit-button" class="login-button btn">
               Register
             </button>
           </div>
+          <span id="error-message"></span>
           <p class="form-text-end">
             Already have account?
             <span>
