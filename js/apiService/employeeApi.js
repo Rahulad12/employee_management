@@ -8,6 +8,14 @@ import { EMP_URL } from "../constant.js";
  * userid is send from the requested login user
  */
 export const getUserEmployeeByUserId = async () => {
+  const token = localStorage.getItem("token");
+  const storedEmployee = JSON.parse(localStorage.getItem("employee"));
+  const storedToken = localStorage.getItem("employeeToken");
+
+  if (storedEmployee && storedToken === token) {
+    console.log("Using cached employee data...");
+    return storedEmployee;
+  }
   try {
     const response = await fetch(`${EMP_URL}`, {
       method: "GET",
@@ -18,7 +26,8 @@ export const getUserEmployeeByUserId = async () => {
     });
 
     const result = await response.json();
-    return response.ok ? result : `${result.message}`;
+    localStorage.setItem("employee", JSON.stringify(result));
+    localStorage.setItem("employeeToken", token);
   } catch (error) {
     return `Error: ${error.message}`;
   }

@@ -6,7 +6,10 @@ import { ADMIN_URL } from "../constant";
  * @returns {Promise<object>} - A promise that resolves to an object with a success message and a users array or an error message.
  * @Access admin
  */
+
 export const getAllUser = async () => {
+
+
   try {
     const response = await fetch(`${ADMIN_URL}/alluser`, {
       method: "GET",

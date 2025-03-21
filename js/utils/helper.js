@@ -11,6 +11,24 @@ export const employeeDashboardElement = () => {
   const dashboard_title = document.getElementById("dashboard-title");
   return { dashboardHead, dashboard_title };
 };
+
+export const employeeProfileElement = () => {
+  const employeeName = document.getElementById("employee-name");
+  const employeeEmail = document.getElementById("employee-email");
+  const employeeJoinDate = document.getElementById("employee-join-date");
+  const employeePhone = document.getElementById("employee-phone");
+  const employeePosition = document.getElementById("employee-position");
+  const employeeDepartment = document.getElementById("employee-department");
+
+  return {
+    employeeName,
+    employeeEmail,
+    employeeJoinDate,
+    employeePhone,
+    employeePosition,
+    employeeDepartment,
+  };
+};
 export const isLoggedIn = () => {
   return !!localStorage.getItem("token");
 };

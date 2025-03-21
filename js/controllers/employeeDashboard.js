@@ -8,15 +8,12 @@ export const employeeDashboard = async () => {
   sideBarComponent();
   //destruct the elements of employee dashboard
   const { dashboardHead, dashboard_title } = employeeDashboardElement();
-
   //fetch the employee data
   const employee = await getUserEmployeeByUserId();
-
-  //HTML CONTENT
+  //save the  fetched data to local storage
   dashboard_title.innerHTML = `
     <h3>Welcome ${employee?.emp[0]?.name || "User Name"}</h3>
   `;
-
   //dashbord content
   dashboardHead.innerHTML = `
       ${stats
