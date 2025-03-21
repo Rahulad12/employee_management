@@ -1,4 +1,4 @@
-import { EMP_URL } from "../constant";
+import { EMP_URL } from "../constant.js";
 
 /**
  * @function getUserEmployeeByUserId
@@ -13,6 +13,7 @@ export const getUserEmployeeByUserId = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 

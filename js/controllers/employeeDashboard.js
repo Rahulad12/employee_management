@@ -1,7 +1,34 @@
+import { getUserEmployeeByUserId } from "../apiService/employeeApi.js";
 import { protectedRoute } from "../component/protectedRoute.js";
 import { sideBarComponent } from "../component/sideBar.js";
-export const employeeDashboard = () => {
-  sideBarComponent();
-};
+import { stats } from "../utils/data.js";
+import { employeeDashboardElement } from "../utils/helper.js";
 
+export const employeeDashboard = async () => {
+  sideBarComponent();
+  //destruct the elements of employee dashboard
+  const { dashboardHead, dashboard_title } = employeeDashboardElement();
+
+  //fetch the employee data
+  const employee = await getUserEmployeeByUserId();
+
+  //HTML CONTENT
+  dashboard_title.innerHTML = `
+    <h3>Welcome ${employee?.emp[0]?.name || "User Name"}</h3>
+  `;
+
+  //dashbord content
+  dashboardHead.innerHTML = `
+      ${stats
+        .map(
+          (item) => `
+          <div class="stats-box">
+            <h3>${item.title}</h3>
+            <p>${item.value}</p>
+          </div>
+        `
+        )
+        .join("")}
+  `;
+};
 protectedRoute(employeeDashboard);

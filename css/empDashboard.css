@@ -10,7 +10,7 @@
 }
 
 #side-bar {
-  background-color: #1b1b1c;
+  background-color: #1e486c;
   width: 200px;
   height: 100vh;
   padding: 20px;
@@ -32,10 +32,59 @@
   display: block;
   padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease-in;
+}
+
+#side-bar ul li a:hover {
+  background-color: white;
+  color: grey;
 }
 #content {
   flex: 1;
-  padding: 20px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
+}
+
+.hero {
+  height: 30vh;
+  background: linear-gradient(to right, #4597d5, #23547b);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#dashboard-head {
+  /* border: 2px solid black; */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 6px 0px;
+}
+.stats-box {
+  background-color: #f6f8fa;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  border-left: 3px solid rgb(38, 136, 215);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 12em;
+  height: 8em;
+  padding: 1rem;
+}
+.stats-box :nth-child(1) {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgba(130, 125, 125, 0.6);
+  text-align: left;
+}
+.stats-box :nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  text-align: left;
 }

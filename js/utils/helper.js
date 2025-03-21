@@ -6,6 +6,11 @@ export const authForm = () => {
   return { userAuthForm, emailInput, passwordInput, submitButton };
 };
 
+export const employeeDashboardElement = () => {
+  const dashboardHead = document.getElementById("dashboard-head");
+  const dashboard_title = document.getElementById("dashboard-title");
+  return { dashboardHead, dashboard_title };
+};
 export const isLoggedIn = () => {
   return !!localStorage.getItem("token");
 };
