@@ -7,9 +7,9 @@ export const authForm = () => {
 };
 
 export const employeeDashboardElement = () => {
-  const dashboardHead = document.getElementById("dashboard-head");
+  const dashboardBody = document.getElementById("dashboard-body");
   const dashboard_title = document.getElementById("dashboard-title");
-  return { dashboardHead, dashboard_title };
+  return { dashboardBody, dashboard_title };
 };
 
 export const employeeProfileElement = () => {
