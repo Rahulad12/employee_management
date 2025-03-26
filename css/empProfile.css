@@ -7,14 +7,14 @@
   display: flex;
 }
 .profile-header {
-  height: 30vh;
+  height: 20vh;
   background: linear-gradient(to right, #4597d5, #23547b);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.dashboard-head-title {
+.profile-header h3 {
   font-size: 2rem;
   font-weight: bold;
 }

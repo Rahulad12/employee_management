@@ -20,7 +20,10 @@
     justify-content: center;
     align-items: center;
 }
-
+.employee-leave-header h3{
+    font-size: 2rem;
+    font-weight: bold;
+}
 /* Body */
 .employee-leave-section {
     display: flex;

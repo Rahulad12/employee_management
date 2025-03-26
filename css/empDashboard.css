@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
 }
-.dashboard-head-title{
+.hero h3 {
   font-size: 2rem;
   font-weight: bold;
 }
