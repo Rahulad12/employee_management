@@ -29,6 +29,26 @@ export const employeeProfileElement = () => {
     employeeDepartment,
   };
 };
+
+export const employeeLeaveElement = () => {
+  const leaveForm = document.getElementById("leave-form");
+  const leaveType = document.getElementById("employee-leave-type");
+  const leaveStartDate = document.getElementById("employee-leave-start-date");
+  const leaveEndDate = document.getElementById("employee-leave-end-date");
+  const leaveReason = document.getElementById("employee-leave-reason");
+  const leaveStatus = document.getElementById("employee-leave-status");
+  const totalLeave = document.getElementById("employee-total-leave");
+
+  return {
+    leaveForm,
+    leaveType,
+    leaveStartDate,
+    leaveEndDate,
+    leaveReason,
+    leaveStatus,
+    totalLeave
+  }
+}
 export const isLoggedIn = () => {
   return !!localStorage.getItem("token");
 };

@@ -1,4 +1,10 @@
 const app = document.getElementById("app");
+const token = localStorage.getItem("token");
+
+if (token) {
+  window.location.href = "./screen/employeeDashboard.html";
+}
+
 const main = () => {
   app.innerHTML = `
     <div class="container">
